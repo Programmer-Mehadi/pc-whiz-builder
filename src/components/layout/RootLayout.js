@@ -1,11 +1,13 @@
 import Footer from "../shared/Footer/Footer";
 import Navbar from "../shared/Navbar/Navbar";
 
-const RootLayout = ({children }) => {
+const RootLayout = ({ children }) => {
   return (
     <>
       <Navbar></Navbar>
-      {children}
+      <section className="max-w-screen">
+        {children}
+      </section>
       <Footer></Footer>
 
     </>
