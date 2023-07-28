@@ -4,7 +4,7 @@ import RootLayout from '@/components/layout/RootLayout';
 const FeaturedCategoryProductPage = ({ products }) => {
 
   return (
-    <div>
+    <div className='pb-24 pt-4 md:pt-8'>
       <h1 className='text-center mt-10 px-5'>
         Featured Category Product By : {
           products.length > 0 ? <span className='text-blue-900'>{(products[0].category).split('-').join(' ')}</span> : ""

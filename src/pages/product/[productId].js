@@ -97,7 +97,7 @@ export const getStaticPaths = async () => {
 
 
 export const getStaticProps = async (context) => {
-  const res = await fetch(`http://localhost:3000/api/products/${context.params.productId}`);
+  const res = await fetch(`http://localhost:3000/api/products/${context?.params?.productId}`);
   const product = await res.json();
   return {
     props: {
