@@ -1,4 +1,5 @@
 import Banner from "@/components/UI/Banner"
+import FeaturedProductSection from "@/components/UI/FeaturedProductSection"
 import RootLayout from "@/components/layout/RootLayout"
 import Head from "next/head"
 
@@ -16,7 +17,7 @@ export default function Home() {
       </Head>
       <main>
         <Banner></Banner>
-
+        <FeaturedProductSection></FeaturedProductSection>
       </main>
     </>
 
