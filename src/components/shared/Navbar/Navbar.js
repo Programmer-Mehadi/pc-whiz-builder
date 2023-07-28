@@ -49,9 +49,9 @@ const Navbar = () => {
   }, [router.pathname])
 
   return (
-    <Layout className="layout navbar_layout">
-      <Header className='flex justify-between gap-10 items-center bg-[#001529'>
-        <div className="logo text-white text-2xl">
+    <Layout className="layout navbar_layout px-0">
+      <Header className='flex justify-between gap-10 items-center bg-[#001529] px-5'>
+        <div className="logo text-white text-2xl font-bold">
           PcWhizBuilder
         </div>
         <Menu className='hidden lg:flex justify-end flex-1 ml-auto text-white' theme="dark" mode="horizontal" selectedKeys={[active]} defaultSelectedKeys={[active]}>
@@ -63,8 +63,8 @@ const Navbar = () => {
             <Menu className='categories_dropdown hidden absolute top-[70px] left-0 w-fit  flex flex-col border shadow rounded-[8px]' mode="vertical" theme="dark" selectedKeys={[0]}>
               {
                 itemCategories.map((item, index) => (
-                  <Menu.Item className='hover:bg-slate-200 hover:text-black' key={`2-${index + 1}`}>
-                    <Link href={`/categories/${item.path}`} className=' ml-0 pl-0 text-black'>{item.value}</Link>
+                  <Menu.Item className='hover:bg-slate-200 text-white hover:text-black' key={`2-${index + 1}`}>
+                    <Link href={`/categories/${item.path}`} className=' ml-0 pl-0 text-white hover:text-black'>{item.value}</Link>
                   </Menu.Item>
                 ))
               }

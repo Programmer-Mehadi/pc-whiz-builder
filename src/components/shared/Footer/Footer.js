@@ -8,7 +8,7 @@ const FooterSection = () => {
   return (
     <Layout className="layout z-9">
       {/* Your header and content here */}
-      <Footer className="footer bg-[#001529] text-white">
+      <Footer className="footer bg-[#001529] text-white px-5 py-14">
         <Row gutter={[16, 16]}>
           <Col xs={24} sm={12} md={8} lg={8} xl={8}>
             <h3>Support</h3>
@@ -43,7 +43,7 @@ const FooterSection = () => {
           </Col>
         </Row>
         <div className="footer-bottom">
-          <p className='pt-3'>©2023 PcWhizBuilder. All rights reserved.</p>
+          <p className='pt-12'>©2023 PcWhizBuilder. All rights reserved.</p>
         </div>
       </Footer>
     </Layout>
