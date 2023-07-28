@@ -37,3 +37,4 @@ next-env.d.ts
 db.json
 motherboard.json
 ram.json
+test.js

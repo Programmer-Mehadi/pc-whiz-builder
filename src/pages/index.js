@@ -19,7 +19,7 @@ export default function Home({ products }) {
       <main>
         <Banner></Banner>
         <FeaturedProductSection></FeaturedProductSection>
-        <section className="px-5 py-16">
+        <section className="px-5 py-16 pb-32">
           <div className="grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-10">
             {
               products && products.map((product) => {

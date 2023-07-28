@@ -15,7 +15,7 @@ const FeaturedProductSection = () => {
 
     return (
         <div className="py-16 lg:py-24 px-5 lg:px-8">
-            <h2 className="text-center text-3xl font-bold mb-4">Featured Products</h2>
+            <h2 className="text-center text-3xl font-bold mb-8">Featured Products</h2>
             <div class="container mx-auto grid gap-6 grid-cols-2 md:grid-cols-4 lg:grid-cols-6  xl:grid-cols-7 ">
                 {
                     itemCategories.map((item, index) => {
