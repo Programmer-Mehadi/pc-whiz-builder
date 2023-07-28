@@ -25,3 +25,4 @@ export default Login
 Login.getLayout = function getLayout(page) {
   return <RootLayout>{page}</RootLayout>
 }
+
