@@ -4,7 +4,7 @@ import ProductCard from "@/components/UI/ProductCard";
 import RootLayout from "@/components/layout/RootLayout";
 import Head from "next/head";
 
-export default function Home({ products}) {
+export default function Home({ products }) {
   return (
     <>
       <Head>
@@ -20,17 +20,16 @@ export default function Home({ products}) {
         <Banner></Banner>
         <FeaturedProductSection></FeaturedProductSection>
         <section className="px-5 py-16">
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-10">
-          {
-            products && products.map((product) => {
-              return <ProductCard product={product} key={product._id} />
-            })
-        }
-        </div>
-       </section>
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-10">
+            {
+              products && products.map((product) => {
+                return <ProductCard product={product} key={product._id} />
+              })
+            }
+          </div>
+        </section>
       </main>
     </>
-
   )
 }
 
@@ -40,8 +39,8 @@ Home.getLayout = function getLayout(page) {
 }
 
 
-export const getServerSideProps = async () => {
-  const res = await fetch('http://localhost:3000/api/categories/random-products');
+export const getStaticProps = async () => {
+  const res = await fetch('http://localhost:3000/api/products/random-products');
   const products = await res.json();
   return {
     props: {

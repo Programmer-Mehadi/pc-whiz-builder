@@ -11,22 +11,13 @@ const ProductCard = (product) => {
         rating,
         _id
     } = product.product;
-    const itemCategories = [
-        'cpu-processor',
-        'motherboard',
-        'ram',
-        'power-supply-unit',
-        'storage-device',
-        'monitor',
-        'others'
-    ]
-    if (itemCategories.includes(category)) {
+    console.log(image);
         const array = category.split('-');
         for(let i = 0; i < array.length; i++) {
             array[i] = array[i][0].toUpperCase() + array[i].slice(1);
         }
         category = array.join(' ');
-    }
+    
     return (
         <div
             className="shadow-sm pb-3 pt-4 px-4 flex justify-between items-center flex-col gap-3 h-full rounded-[8px]" style={{
@@ -34,7 +25,7 @@ const ProductCard = (product) => {
             }}
         >
             <div className='w-full flex justify-center mb-8 min-h-[120px]'>
-                <img alt={productName} src={image} className='w-[70%] h-auto mx-auto' />
+                <img alt={productName} src={image.slice(1)} className='w-[70%] h-auto mx-auto' />
             </div>
 
             <div className='w-full flex flex-col gap-2'>
@@ -43,7 +34,7 @@ const ProductCard = (product) => {
                     <p className="text-gray-500">{category}</p>
                 </div>
                 <div className="flex justify-between">
-                    <p className="text-lg font-bold">${price}</p>
+                    <p className="text-lg font-bold">Tk {price}</p>
                     <p
                         className={`${status === 'In Stock' ? 'text-green-500' : 'text-red-500'
                             }`}
@@ -57,7 +48,7 @@ const ProductCard = (product) => {
                 </div>
                 <div className='flex-1 flex items-end justify-center'>
                     <Link href={`/product/${_id}`} className='w-full'>
-                        <button className='bg-slate-700 border-0 py-3 px-8 w-full rounded-[8px] text-white cursor-pointer'>View more</button>
+                        <button className='bg-slate-700 border-0 py-3 px-8 w-full rounded-[6px] text-white cursor-pointer'>View more</button>
                     </Link>
                 </div>
             </div>
