@@ -13,8 +13,8 @@
   z-index: 20;
   position: relative;
 }
-.navbar_layout .ant-menu-title-content{
-  margin-left: 4px !important;
+.navbar_layout .ant-menu-title-content {
+  margin-left: 8px !important;
 }
 .navbar_layout .ant-menu-submenu-arrow {
   display: none;

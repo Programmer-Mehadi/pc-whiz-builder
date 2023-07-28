@@ -1,5 +1,6 @@
-import { DesktopOutlined, DownSquareOutlined, HomeOutlined, UnorderedListOutlined, UserOutlined } from '@ant-design/icons';
+import { DesktopOutlined, DownSquareOutlined, HomeOutlined, LogoutOutlined, UnorderedListOutlined, UserOutlined } from '@ant-design/icons';
 import { Layout, Menu } from 'antd';
+import { signOut, useSession } from 'next-auth/react';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import { useEffect, useState } from 'react';
@@ -7,6 +8,7 @@ const { SubMenu } = Menu;
 const { Header } = Layout;
 
 const Navbar = () => {
+  const { data: session } = useSession()
   const itemCategories = [
     { path: 'cpu-processor', value: 'CPU / Processor' },
     { path: 'motherboard', value: 'Motherboard' },
@@ -16,12 +18,12 @@ const Navbar = () => {
     { path: 'monitor', value: 'Monitor' },
     { path: 'others', value: 'Others' }
   ]
-  
+
   const showDropDown = () => {
     document.querySelector('.dropdown').classList.toggle('hidden');
   }
   const showCategoriesDropDown = () => {
-    console.log('click');
+
     document.querySelector('.categories_dropdown')?.classList.toggle('hidden');
     for (let i = 0; i < document.querySelectorAll('.categories_modile_item').length; i++) {
       document.querySelectorAll('.categories_modile_item')[i].classList.toggle('hidden');
@@ -29,7 +31,7 @@ const Navbar = () => {
     }
   }
   const router = useRouter();
-  console.log(router.pathname);
+
   const [active, setActive] = useState(1);
   useEffect(() => {
     if (router.pathname === '/') {
@@ -45,7 +47,7 @@ const Navbar = () => {
       setActive('4');
     }
   }, [router.pathname])
-  console.log(active);
+
   return (
     <Layout className="layout navbar_layout">
       <Header className='flex justify-between gap-10 items-center bg-[#001529'>
@@ -70,10 +72,14 @@ const Navbar = () => {
           </Menu.Item>
           <Menu.Item key="3" icon={<DesktopOutlined />}>
             <Link href="/pc-builder" className='text-white ml-0 pl-0'>PC Builder</Link>
-          </Menu.Item>
-          <Menu.Item key="4" icon={<UserOutlined />}>
-            <Link href="/login" className='text-white ml-0 pl-0'>Login</Link>
-          </Menu.Item>
+          </Menu.Item>{
+            session ? <Menu.Item key="4" icon={<LogoutOutlined />}>
+              <span onClick={() => signOut()} className='text-white ml-0 pl-0'>Sign out</span>
+            </Menu.Item> :
+              <Menu.Item key="4" icon={<UserOutlined />}>
+                <Link href="/login" className='text-white ml-0 pl-0'>Login</Link>
+              </Menu.Item>
+          }
         </Menu>
         <div className='lg:hidden relative flex items-center'>
           <div onClick={showDropDown}>
@@ -99,9 +105,14 @@ const Navbar = () => {
             <Menu.Item className='hover:bg-slate-700' key="3" icon={<DesktopOutlined />}>
               <Link href="/pc-builder" className='ml-0 pl-0'>PC Builder</Link>
             </Menu.Item>
-            <Menu.Item className='hover:bg-slate-700' key="4" icon={<UserOutlined />}>
-              <Link href="/login" className='ml-0 pl-0'>Login</Link>
-            </Menu.Item>
+            {
+              session ? <Menu.Item className='hover:bg-slate-700' key="4" icon={<LogoutOutlined />}>
+                <span onClick={() => signOut()} className='ml-0 pl-0'>Sign out</span>
+              </Menu.Item> :
+                <Menu.Item className='hover:bg-slate-700' key="4" icon={<UserOutlined />}>
+                  <Link href="/login" className='ml-0 pl-0'>Login</Link>
+                </Menu.Item>
+            }
           </Menu>
         </div>
       </Header>

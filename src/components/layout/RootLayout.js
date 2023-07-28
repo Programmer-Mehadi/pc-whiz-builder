@@ -8,7 +8,7 @@ const RootLayout = ({ children }) => {
   return (
     <>
       <Navbar></Navbar>
-      <section className="max-w-screen min-h-[66vh]">
+      <section className="max-w-screen min-h-[80vh]">
         {children}
       </section>
       <FooterSection></FooterSection>

@@ -1,4 +1,4 @@
-import LoginSection from '@/components/UI/login'
+import LoginSection from '@/components/UI/LoginSection'
 import RootLayout from '@/components/layout/RootLayout'
 import Head from 'next/head'
 
