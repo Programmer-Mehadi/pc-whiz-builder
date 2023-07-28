@@ -9,7 +9,48 @@
   margin: 0;
   padding: 0;
 }
-
+.navbar_layout {
+  z-index: 20;
+  position: relative;
+}
+.navbar_layout .ant-menu-title-content{
+  margin-left: 4px !important;
+}
 .navbar_layout .ant-menu-submenu-arrow {
   display: none;
+}
+
+.site-layout-content {
+  background: #fff;
+  padding: 24px;
+  min-height: 280px;
+}
+
+.footer {
+  padding: 24px;
+  position: relative;
+  z-index: 10;
+  /* background-color: #f0f2f5; */
+}
+
+.footer h3 {
+  color: #fff;
+  margin-bottom: 10px;
+}
+
+.footer ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+.footer ul li {
+  margin-bottom: 8px;
+}
+
+.footer-bottom {
+  text-align: center;
+  margin-top: 24px;
+  padding-top: 8px;
+  border-top: 1px solid #d9d9d9;
+  color: #999;
 }

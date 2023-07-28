@@ -1,3 +1,4 @@
+import RootLayout from '@/components/layout/RootLayout'
 import React from 'react'
 
 const PcBuilderPage = () => {
@@ -7,3 +8,8 @@ const PcBuilderPage = () => {
 }
 
 export default PcBuilderPage
+
+
+PcBuilderPage.getLayout = function getLayout(page) {
+  return <RootLayout>{ page}</RootLayout>
+}
