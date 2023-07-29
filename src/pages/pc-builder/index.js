@@ -1,11 +1,18 @@
 import RootLayout from '@/components/layout/RootLayout'
+import { removeProduct } from '@/redux/features/pcBuilder/pcBuilderSlice'
 import Head from 'next/head'
-import { useSelector } from 'react-redux'
+import Link from 'next/link'
+import { useDispatch, useSelector } from 'react-redux'
 
 const PcBuilderPage = () => {
 
-  const {itemCategories} = useSelector(state => state.pcBuilder)
-  console.log(itemCategories[0]);
+  const { itemCategories, sum } = useSelector(state => state.pcBuilder)
+  const dispatch = useDispatch();
+  const handleRemove = (path) => {
+    dispatch(removeProduct({
+      category: path
+    }))
+  }
   return (
     <>
       <Head>
@@ -33,26 +40,28 @@ const PcBuilderPage = () => {
                     return <tr>
                       <td class="px-6 py-3 w-[15%]">
                         {
-                          item?.productImage === "" ?  <img src={item.url.slice(1)} className='w-full max-w-[50px]' alt="dfgfdgfd" /> :  <img src={item.productImage.slice(1)} className='w-full max-w-[50px]' alt="dfgfdgfd" />
-                       }
+                          item?.productImage === "" ? <img src={item.url.slice(1)} className='w-full max-w-[50px]' alt="dfgfdgfd" /> : <img src={item?.productImage.slice(1)} className='w-full max-w-[50px]' alt="dfgfdgfd" />
+                        }
                       </td>
                       <td class=" px-6 py-3 w-[53%]">
                         <div>
                           <p className='my-1 text-sm'>{item.value}</p>
                           {
-                            item?.productName !== "" ? <p className='text-sm'>{item.productName}</p> :  <p className='bg-gray-200 py-1'></p>
-                         }
+                            item?.productName !== "" ? <p className='text-sm'>{item.productName}</p> : <p className='bg-gray-200 py-1'></p>
+                          }
                         </div>
                       </td>
                       <td class=" px-6 py-3 w-[15%]">
                         {
-                          item.price !== "" ? <p className='text-sm'>{item.price}</p> :  <p className='bg-gray-200 py-1'></p>
+                          item.price !== "" ? <p className='text-sm'>{item.price} &#2547;</p> : <p className='bg-gray-200 py-1'></p>
                         }
                       </td>
                       <td class=" px-6 py-3 w-[15%]">
                         <div>
                           {
-                            item?.productImage !== "" && item?.productName !== "" && item?.price !== "" ? <button className='bg-red-900 hover:bg-red-700 hover:scale-105 transition-all text-white border-0 py-1 px-3 text-sm rounded-[4px] cursor-pointer'>X</button> : <button className='bg-green-900 hover:bg-green-700 hover:scale-105 transition-all text-white border-0 py-1 px-3 text-sm rounded-[4px] cursor-pointer'>Choose</button>
+                            item?.productImage !== "" && item?.productName !== "" && item?.price !== "" ? <div onClick={() => handleRemove(item?.path)}> <button className='bg-red-900 hover:bg-red-700 hover:scale-105 transition-all text-white border-0 py-1 px-3 text-sm rounded-[4px] cursor-pointer'>X</button></div> : <Link href={`/pc-builder/${item?.path}`}>
+                              <button className='bg-green-900 hover:bg-green-700 hover:scale-105 transition-all text-white border-0 py-1 px-3 text-sm rounded-[4px] cursor-pointer'>Choose</button>
+                            </Link>
                           }
                         </div>
                       </td>
@@ -60,6 +69,21 @@ const PcBuilderPage = () => {
                   })
                 }
               </tbody>
+              <tfoot>
+                <tr style={{
+                  backgroundColor: "#e5e5e5"
+                }}>
+                  <td colSpan={2} className='text-right py-3 px-4'>
+                    <p className='font-bold'>Total Price</p>
+                  </td>
+                  <td>
+                    {
+                      sum !== "" ? <p className='text-base text-center font-medium'>{sum} &#2547;</p> : <p className='bg-gray-200 py-1'></p>
+                    }
+                  </td>
+                  <td></td>
+                </tr>
+              </tfoot>
             </table>
           </div>
         </div>

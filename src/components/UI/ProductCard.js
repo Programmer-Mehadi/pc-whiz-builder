@@ -1,7 +1,10 @@
-import { ForwardOutlined } from '@ant-design/icons';
+import { addProduct } from '@/redux/features/pcBuilder/pcBuilderSlice';
 import { Rate } from 'antd';
 import Link from 'next/link';
+import { useRouter } from 'next/router';
+import { useDispatch } from 'react-redux';
 const ProductCard = (product) => {
+    const dispatch = useDispatch();
     let {
         image,
         productName,
@@ -15,8 +18,18 @@ const ProductCard = (product) => {
     for (let i = 0; i < array.length; i++) {
         array[i] = array[i][0].toUpperCase() + array[i].slice(1);
     }
-    category = array.join(' ');
+    const newCategory = array.join(' ');
+    const router = useRouter()
 
+    const handleAdd = () => {
+        dispatch(addProduct({
+            productImage: image,
+            productName,
+            price,
+            category,
+        }))
+        router.push(`/pc-builder`)  
+    }
     return (
         <div
             className="shadow-sm pb-3 pt-4 px-4 flex justify-between items-center flex-col gap-3 h-full rounded-[8px] hover:shadow-md" style={{
@@ -30,7 +43,7 @@ const ProductCard = (product) => {
             <div className='w-full flex flex-col gap-2'>
                 <div className="mb-2">
                     <h3 className="text-xl font-semibold">{productName.slice(0, 30)}{productName.length > 30 && '...'}</h3>
-                    <p className="text-gray-500">{category}</p>
+                    <p className="text-gray-500">{newCategory}</p>
                 </div>
                 <div className="flex justify-between">
                     <p className="text-lg font-bold">{price} &#2547;</p>
@@ -46,11 +59,16 @@ const ProductCard = (product) => {
                     <span className="ml-2 mt-1">{rating}</span>
                 </div>
                 <div className='flex-1 flex items-end justify-between mt-1'>
-                    <Link href={`/product/${_id}`} className='w-full no-underline'>
-                        <button className='bg-cyan-700 border-0 py-2 text-base flex justify-center gap-3 items-center px-8 w-full rounded-[6px] text-white cursor-pointer hover:bg-cyan-800 hover:scale-105 transition-all'>View more
-                            <ForwardOutlined />
-                        </button>
-                    </Link>
+                    {
+                        router.asPath.match('pc-builder') ? <div className='w-full no-underline'>
+                            <button onClick={()=>handleAdd()} className='bg-cyan-700 border-0 py-2 text-base flex justify-center gap-3 items-center px-8 w-full rounded-[6px] text-white cursor-pointer hover:bg-cyan-800 hover:scale-105 transition-all'>Add To Builder
+                            </button>
+                        </div> : <Link href={`/product/${_id}`} className='w-full no-underline'>
+                            <button className='bg-cyan-700 border-0 py-2 text-base flex justify-center gap-3 items-center px-8 w-full rounded-[6px] text-white cursor-pointer hover:bg-cyan-800 hover:scale-105 transition-all'>View more
+                            </button>
+                        </Link>
+                    }
+
                 </div>
             </div>
         </div>
