@@ -17,12 +17,11 @@ async function runThree(req, res) {
         const db = await client.db("pc-whiz-builder")
         const productsCollection = db.collection("products");
         if (req.method === "GET") {
-            console.log(req.query.productId);
             const product = await productsCollection.findOne({ _id: new ObjectId(req.query.productId) })
             res.status(200).json(product);
         }
     } catch (err) {
-        console.log("Error connecting to MongoDB:", err);
+        // console.log("Error connecting to MongoDB:", err);
     } finally {
         // Ensures that the client will close when you finish/error
     }

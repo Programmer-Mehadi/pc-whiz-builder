@@ -21,7 +21,7 @@ async function runThree(req, res) {
             res.status(200).json(product);
         }
     } catch (err) {
-        console.log("Error connecting to MongoDB:", err);
+        // console.log("Error connecting to MongoDB:", err);
     } finally {
         // Ensures that the client will close when you finish/error
     }

@@ -14,55 +14,58 @@ export const pcBuilderSlice = createSlice({
             { path: 'monitor', value: 'Monitor', url: "./images/featured/monitor.svg", productName: "", price: "", productImage: "" },
             { path: 'others', value: 'Others', url: "./images/featured/others.svg", productName: "", price: "", productImage: "" }
         ],
-        sum: 0
-
+        sum: 0,
+        fullFill:0
     },
     reducers: {
         addProduct: (state, action) => {
             const data = action.payload;
-            console.log(data);
             const preData = state.itemCategories;
-            const newData = preData.map((item) => {
+            let full = 0
+            let sum = 0
+            const newData = preData.map((item,index) => {
                 if (item.path === data?.category) {
                     item.productName = data?.productName;
                     item.price = data?.price;
                     item.productImage = data?.productImage;
+                    sum = item.price
+                    if (index + 1 < 7) {
+                        full = 1
+                    }
                     return item
                 }
                 else {
                     return item
                 }
             })
-            let sum = 0
-            for(let i = 0; i < newData.length; i++){
-                if (newData.price !== "") {                    
-                    sum += newData[i].price
-                }
-            }
-            state.sum = Number(sum).toFixed(2);
+
+            state.fullFill = state.fullFill + full;
+            state.sum = Number(Number(state.sum) + Number(Number(sum).toFixed(2))).toFixed(2);
             state.itemCategories = newData
         },
         removeProduct: (state, action) => {
             const data = action.payload;
             const preData = state.itemCategories;
-            const newData = preData.map((item) => {
+            let full = 0
+            let sum = 0
+            const newData = preData.map((item,index) => {
                 if (item.path === data?.category) {
                     item.productName = "";
+                    sum = item.price
                     item.price = "";
                     item.productImage = "";
+                    if (index + 1 < 7) {
+                        full = 1
+                    }
                     return item
                 }
                 else {
                     return item
                 }
             })
-            let sum = 0
-            for(let i = 0; i < newData.length; i++){
-                if (newData.price !== "") {                    
-                    sum += newData[i].price
-                }
-            }
-            state.sum = Number(sum).toFixed(2);
+      
+            state.fullFill = state.fullFill - full;
+            state.sum = Number(Number(state.sum) - Number(Number(sum).toFixed(2))).toFixed(2);
             state.itemCategories = newData
         }
     }

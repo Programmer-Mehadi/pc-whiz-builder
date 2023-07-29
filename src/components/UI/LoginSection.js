@@ -3,6 +3,7 @@ import { Button, Card, Col, Divider, Form, Input, Layout, Row } from 'antd';
 import { signIn, useSession } from "next-auth/react";
 import { useRouter } from 'next/router';
 import { useEffect } from 'react';
+import { toast } from 'react-toastify';
 
 const { Content } = Layout;
 
@@ -16,7 +17,7 @@ const LoginSection = () => {
     }
   }, [session, router]);
   const onFinish = (values) => {
-    console.log('Received values of form: ', values);
+      toast("Not Implemented yet!");
   };
 
   return (

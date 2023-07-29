@@ -21,7 +21,7 @@ async function run(req,res) {
             res.status(200).json(categories);
         }
     } catch (err) {
-        console.log("Error connecting to MongoDB:", err);
+        // console.log("Error connecting to MongoDB:", err);
     } finally {
         // Ensures that the client will close when you finish/error
     }
