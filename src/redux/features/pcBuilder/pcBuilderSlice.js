@@ -14,7 +14,7 @@ export const pcBuilderSlice = createSlice({
             { path: 'monitor', value: 'Monitor', url: "./images/featured/monitor.svg", productName: "", price: "", productImage: "" },
             { path: 'others', value: 'Others', url: "./images/featured/others.svg", productName: "", price: "", productImage: "" }
         ],
-        sum : 0
+        sum: 0
 
     },
     reducers: {
@@ -33,6 +33,13 @@ export const pcBuilderSlice = createSlice({
                     return item
                 }
             })
+            let sum = 0
+            for(let i = 0; i < newData.length; i++){
+                if (newData.price !== "") {                    
+                    sum += newData[i].price
+                }
+            }
+            state.sum = Number(sum).toFixed(2);
             state.itemCategories = newData
         },
         removeProduct: (state, action) => {
@@ -49,12 +56,19 @@ export const pcBuilderSlice = createSlice({
                     return item
                 }
             })
+            let sum = 0
+            for(let i = 0; i < newData.length; i++){
+                if (newData.price !== "") {                    
+                    sum += newData[i].price
+                }
+            }
+            state.sum = Number(sum).toFixed(2);
             state.itemCategories = newData
         }
     }
 })
 
 // Action creators are generated for each case reducer function
-export const { addProduct,removeProduct } = pcBuilderSlice.actions
+export const { addProduct, removeProduct } = pcBuilderSlice.actions
 
 export default pcBuilderSlice.reducer
