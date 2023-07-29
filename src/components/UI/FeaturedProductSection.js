@@ -19,9 +19,9 @@ const FeaturedProductSection = () => {
             <div className="container mx-auto grid gap-6 grid-cols-2 md:grid-cols-4 lg:grid-cols-6  xl:grid-cols-7 ">
                 {
                     itemCategories.map((item, index) => {
-                        return <Link href={`/categories/${item.path}`} style={{
-                                    textDecoration: "none"
-                                }}>
+                        return <Link key={index} href={`/categories/${item.path}`} style={{
+                            textDecoration: "none"
+                        }}>
                             <div className="bg-white rounded-lg shadow-sm p-6 px-2" style={{
                                 border: "1px solid #E5E7EB"
                             }}>

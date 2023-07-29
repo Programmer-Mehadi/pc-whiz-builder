@@ -3,7 +3,7 @@ import { Rate } from 'antd';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import { useDispatch } from 'react-redux';
-const ProductCard = (product) => {
+const ProductCard = (product = {}) => {
     const dispatch = useDispatch();
     let {
         image,
@@ -28,7 +28,7 @@ const ProductCard = (product) => {
             price,
             category,
         }))
-        router.push(`/pc-builder`)  
+        router.push(`/pc-builder`)
     }
     return (
         <div
@@ -61,7 +61,7 @@ const ProductCard = (product) => {
                 <div className='flex-1 flex items-end justify-between mt-1'>
                     {
                         router.asPath.match('pc-builder') ? <div className='w-full no-underline'>
-                            <button onClick={()=>handleAdd()} className='bg-cyan-700 border-0 py-2 text-base flex justify-center gap-3 items-center px-8 w-full rounded-[6px] text-white cursor-pointer hover:bg-cyan-800 hover:scale-105 transition-all'>Add To Builder
+                            <button onClick={() => handleAdd()} className='bg-cyan-700 border-0 py-2 text-base flex justify-center gap-3 items-center px-8 w-full rounded-[6px] text-white cursor-pointer hover:bg-cyan-800 hover:scale-105 transition-all'>Add To Builder
                             </button>
                         </div> : <Link href={`/product/${_id}`} className='w-full no-underline'>
                             <button className='bg-cyan-700 border-0 py-2 text-base flex justify-center gap-3 items-center px-8 w-full rounded-[6px] text-white cursor-pointer hover:bg-cyan-800 hover:scale-105 transition-all'>View more

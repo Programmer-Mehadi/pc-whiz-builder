@@ -1,7 +1,7 @@
 import ProductCard from '@/components/UI/ProductCard';
 import RootLayout from '@/components/layout/RootLayout';
 
-const FeaturedCategoryProductPage = ({ products }) => {
+const FeaturedCategoryProductPage = ({ products = [] }) => {
 
   return (
     <div className='pb-24 pt-4 md:pt-8'>
@@ -20,7 +20,6 @@ const FeaturedCategoryProductPage = ({ products }) => {
               return <ProductCard product={product} key={product._id} />
             })
           }
-
         </div>
       </section>
     </div>
@@ -35,22 +34,23 @@ FeaturedCategoryProductPage.getLayout = function getLayout(page) {
   return <RootLayout>{page}</RootLayout>
 }
 
-export const getStaticPaths = async () => {
-  const res = await fetch('http://localhost:3000/api/categories');
-  const data = await res.json();
-  return {
-    paths: data.map((category) => ({ params: { featuredCategory: category.path } })),
-    fallback: false
-  }
-}
+// export const getStaticPaths = async () => {
+//   const res = await fetch('http://localhost:3000/api/categories');
+//   const data = await res.json();
+//   return {
+//     paths: data.map((category) => ({ params: { featuredCategory: category.path } })),
+//     fallback: false
+//   }
+// }
 
-export const getStaticProps = async (context) => {
-  const { params } = context;
-  const res = await fetch(`http://localhost:3000/api/categories/${params?.featuredCategory}`);
-  const products = await res.json();
-  return {
-    props: {
-      products
-    }
-  }
-}
+// export const getStaticProps = async (context) => {
+//   const { params } = context;
+//   const res = await fetch(`http://localhost:3000/api/categories/${params?.featuredCategory}`);
+//   const products = await res.json();
+//   return {
+//     props: {
+//       products
+//     },
+//      revalidate: 10,
+//   }
+// }

@@ -23,7 +23,7 @@ const Banner = () => (
         <div className='w-full relative'>
             <img src="/images/banner/4.jpg" alt="" height={360} width={100} className='w-full h-[350px] md:h-[400px] lg:h-[500px]' />
             <div className='absolute top-0 left-0 w-full  h-[100%] flex items-center justify-center  bg-[#00000070]'>
-                <h1 className='text-center text-white mx-auto text-[28px] md:text-[34px] lg:text-[48px] w-full max-w-[700px] px-5'>Innovate, Accelerate, Dominate: Your PC, Your Vision"</h1>
+                <h1 className='text-center text-white mx-auto text-[28px] md:text-[34px] lg:text-[48px] w-full max-w-[700px] px-5'>Innovate, Accelerate, Dominate: Your PC, Your Vision</h1>
             </div>
         </div>
     </Carousel>

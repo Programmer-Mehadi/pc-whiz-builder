@@ -38,7 +38,7 @@ const PcBuilderPage = () => {
               <tbody className='overflow-auto'>
                 {
                   itemCategories.map((item, index) => {
-                    return <tr>
+                    return <tr key={index}>
                       <td class="px-6 py-3 w-[15%]">
                         {
                           item?.productImage === "" ? <img src={item.url.slice(1)} className='w-full max-w-[50px]' alt="dfgfdgfd" /> : <img src={item?.productImage.slice(1)} className='w-full max-w-[50px]' alt="dfgfdgfd" />

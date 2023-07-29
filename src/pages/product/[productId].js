@@ -1,7 +1,7 @@
 import RootLayout from '@/components/layout/RootLayout';
 import { ShoppingCartOutlined, VideoCameraOutlined } from '@ant-design/icons';
 import { Rate } from 'antd';
-const ProductDetailsPage = ({ product }) => {
+const ProductDetailsPage = ({ product = {} }) => {
   const array = product?.category.split('-');
   for (let i = 0; i < array.length; i++) {
     array[i] = array[i][0].toUpperCase() + array[i].slice(1);
@@ -86,22 +86,23 @@ ProductDetailsPage.getLayout = function getLayout(page) {
   return <RootLayout>{page}</RootLayout>
 }
 
-export const getStaticPaths = async () => {
-  const res = await fetch('http://localhost:3000/api/products');
-  const products = await res.json();
-  return {
-    paths: products.map((product) => ({ params: { productId: product._id } })),
-    fallback: false
-  }
-}
+// export const getStaticPaths = async () => {
+//   const res = await fetch('http://localhost:3000/api/products');
+//   const products = await res.json();
+//   return {
+//     paths: products.map((product) => ({ params: { productId: product._id } })),
+//     fallback: false
+//   }
+// }
 
 
-export const getStaticProps = async (context) => {
-  const res = await fetch(`http://localhost:3000/api/products/${context?.params?.productId}`);
-  const product = await res.json();
-  return {
-    props: {
-      product
-    }
-  }
-}
+// export const getStaticProps = async (context) => {
+//   const res = await fetch(`http://localhost:3000/api/products/${context?.params?.productId}`);
+//   const product = await res.json();
+//   return {
+//     props: {
+//       product
+//     },
+//     revalidate: 10,
+//   }
+// }

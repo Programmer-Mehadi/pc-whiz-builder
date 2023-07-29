@@ -4,7 +4,7 @@ import ProductCard from "@/components/UI/ProductCard";
 import RootLayout from "@/components/layout/RootLayout";
 import Head from "next/head";
 
-export default function Home({ products }) {
+export default function Home({ products = [] }) {
   return (
     <>
       <Head>
@@ -39,12 +39,12 @@ Home.getLayout = function getLayout(page) {
 }
 
 
-export const getStaticProps = async () => {
-  const res = await fetch('http://localhost:3000/api/products/random-products');
-  const products = await res.json();
-  return {
-    props: {
-      products
-    }
-  }
-}
+// export const getStaticProps = async () => {
+//   const res = await fetch('http://localhost:3000/api/products/random-products');
+//   const products = await res.json();
+//   return {
+//     props: {
+//       products
+//     }
+//   }
+// }
