@@ -4,6 +4,7 @@ import { signOut, useSession } from 'next-auth/react';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import { useEffect, useState } from 'react';
+import { toast } from 'react-toastify';
 const { SubMenu } = Menu;
 const { Header } = Layout;
 
@@ -52,7 +53,8 @@ const Navbar = () => {
     <Layout className="layout navbar_layout px-0">
       <Header className='flex justify-between gap-10 items-center bg-[#001529] px-5'>
         <div className="logo text-white text-2xl font-bold">
-          PcWhizBuilder
+          <Link href={'/'} className='no-underline text-white'>
+            PcWhizBuilder</Link>
         </div>
         <Menu className='hidden lg:flex justify-end flex-1 ml-auto text-white' theme="dark" mode="horizontal" selectedKeys={[active]} defaultSelectedKeys={[active]}>
           <Menu.Item key="1" icon={<HomeOutlined />} className='text-white'>
@@ -107,7 +109,7 @@ const Navbar = () => {
             </Menu.Item>
             {
               session ? <Menu.Item className='hover:bg-slate-700' key="4" icon={<LogoutOutlined />}>
-                <span onClick={() => signOut()} className='ml-0 pl-0'>Sign out</span>
+                <span onClick={() => { signOut(); toast("Logged out !") }} className='ml-0 pl-0'>Sign out</span>
               </Menu.Item> :
                 <Menu.Item className='hover:bg-slate-700' key="4" icon={<UserOutlined />}>
                   <Link href="/login" className='ml-0 pl-0'>Login</Link>

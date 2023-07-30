@@ -35,7 +35,7 @@ export const pcBuilderSlice = createSlice({
                     item.productName = data?.productName;
                     item.price = data?.price;
                     item.productImage = data?.productImage;
-                    item._id = data?._id
+                    item.productId = data?.productId
                     sum = item.price
                     if (index + 1 < 7) {
                         full = 1
@@ -62,7 +62,7 @@ export const pcBuilderSlice = createSlice({
                     sum = item.price
                     item.price = "";
                     item.productImage = "";
-                    item._id = ""
+                    item.productId = ""
                     if (index + 1 < 7) {
                         full = 1
                     }

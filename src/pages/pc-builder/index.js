@@ -42,6 +42,7 @@ const PcBuilderPage = ({ categories }) => {
               <tbody className='overflow-auto'>
                 {
                   itemCategories.length > 0 ? itemCategories.map((item, index) => {
+                    console.log(item);
                     return <tr key={index}>
                       <td class="px-6 py-3">
                         <div>
@@ -55,9 +56,9 @@ const PcBuilderPage = ({ categories }) => {
                       </td>
                       <td class=" px-6 py-3">
                         <div>
-                          <p className='my-1 text-sm'>{item.value} {index + 1 < 7 && <span className='text-base text-red-600'>*</span>}</p>
+                          <p className='my-1 text-xs md:text-sm'>{item.value} {index + 1 < 7 && <span className='text-base text-red-600'>*</span>}</p>
                           {
-                            item?.productName !== "" ? <p className='text-sm'>{item.productName}</p> : <p className='bg-gray-200 py-1'></p>
+                            item?.productName !== "" ? <Link href={`/product/${item?.productId}`} className='text-sm font-semibold no-underline'>{item.productName}</Link> : <p className='bg-gray-200 py-1'></p>
                           }
                         </div>
                       </td>
