@@ -105,7 +105,7 @@ const PcBuilderPage = ({ categories }) => {
                       fullFill === 6 ? <div className='py-4 px-4 flex justify-end'> <button onClick={() => {
                         toast.success("Congratulations! Your build has been completed successfully 🚀")
                       }} className='bg-green-900 hover:bg-green-700 hover:scale-105 transition-all text-white border-0 py-2 px-5 text-base rounded-[4px] cursor-pointer w-fit'>Complete Build button</button></div> :
-                        <div className='py-4 px-4 flex justify-end'> <button className='bg-gray-300 hover:bg-gray-300 transition-all text-slate-500 cursor-not-allowed border-0 py-2 px-5 text-base rounded-[4px] w-fit'>Complete Build button</button></div>
+                        <div className='py-4 px-4 flex justify-end'> <button className='bg-gray-300 hover:bg-gray-300 transition-all text-slate-500 cursor-not-allowed border-0 py-2 px-5 text-base rounded-[4px] w-fit'>Complete Build</button></div>
                     }
                   </td>
                 </tr>

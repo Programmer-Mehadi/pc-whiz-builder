@@ -1,8 +1,9 @@
 <br><h5>INSTALL</h5>
 
-    1. Clone the repositories
-    2. Open the folder in cmd
-    3. Run `npm i` or `npm install`
+    1. Clone the repositories.
+    2. Open the folder in cmd.
+    3. Run `npm i` or `npm install`.
+    4. Change env.text file to .env and set your own keys.
 
 <h5>Front End Live Site</h5>
 
