@@ -17,7 +17,7 @@ const LoginSection = () => {
     }
   }, [session, router]);
   const onFinish = (values) => {
-      toast("Not Implemented yet!");
+      toast.warn("Not Implemented yet!");
   };
 
   return (

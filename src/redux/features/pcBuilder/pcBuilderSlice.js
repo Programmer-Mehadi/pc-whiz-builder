@@ -76,11 +76,16 @@ export const pcBuilderSlice = createSlice({
             state.fullFill = state.fullFill - full;
             state.sum = Number(Number(state.sum) - Number(Number(sum).toFixed(2))).toFixed(2);
             state.itemCategories = newData
+        },
+        resetCategories: (state) => {
+            state.itemCategories = []
+            state.sum = 0
+            state.fullFill = 0
         }
     }
 })
 
 // Action creators are generated for each case reducer function
-export const { addProduct, removeProduct, setCategories } = pcBuilderSlice.actions
+export const { addProduct, removeProduct, setCategories, resetCategories } = pcBuilderSlice.actions
 
 export default pcBuilderSlice.reducer

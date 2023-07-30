@@ -1,5 +1,5 @@
 import RootLayout from '@/components/layout/RootLayout'
-import { removeProduct, setCategories } from '@/redux/features/pcBuilder/pcBuilderSlice'
+import { removeProduct, resetCategories, setCategories } from '@/redux/features/pcBuilder/pcBuilderSlice'
 import Head from 'next/head'
 import Image from 'next/image'
 import Link from 'next/link'
@@ -30,7 +30,7 @@ const PcBuilderPage = ({ categories }) => {
           <p className='text-bse bg-cyan-700 text-white pl-2 py-2 text-center'>Select Components</p>
 
           <div className='overflow-auto'>
-            <table class="mt-5 w-full border-collapse">
+            <table class="mt-5 w-full min-w-[550px] border-collapse">
               <thead className='text-left text-xs md:text-base bg-gray-800 text-white'>
                 <tr>
                   <td class="px-6 py-3">Image</td>
@@ -104,8 +104,14 @@ const PcBuilderPage = ({ categories }) => {
                   <td colSpan={4}>
                     {
                       fullFill === 6 ? <div className='py-4 px-4 flex justify-end'> <button onClick={() => {
+                        dispatch(
+                          resetCategories()
+                        )
+                        dispatch(setCategories({
+                          categories
+                        }))
                         toast.success("Congratulations! Your build has been completed successfully 🚀")
-                      }} className='bg-green-900 hover:bg-green-700 hover:scale-105 transition-all text-white border-0 py-2 px-5 text-base rounded-[4px] cursor-pointer w-fit'>Complete Build button</button></div> :
+                      }} className='bg-green-900 hover:bg-green-700 hover:scale-105 transition-all text-white border-0 py-2 px-5 text-base rounded-[4px] cursor-pointer w-fit'>Complete Build</button></div> :
                         <div className='py-4 px-4 flex justify-end'> <button className='bg-gray-300 hover:bg-gray-300 transition-all text-slate-500 cursor-not-allowed border-0 py-2 px-5 text-base rounded-[4px] w-fit'>Complete Build</button></div>
                     }
                   </td>

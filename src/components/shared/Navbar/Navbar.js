@@ -87,7 +87,7 @@ const Navbar = () => {
           <div onClick={showDropDown}>
             <UnorderedListOutlined className='text-white text-2xl cursor-pointer' />
           </div>
-          <Menu className='dropdown hidden w-[200px] overflow-hidden  absolute top-[70px] left-[-150px] rounded-[8px]  border-[1px] border-slate-800 shadow' theme="dark" mode="vertical" selectedKeys={[active]}>
+          <Menu className='dropdown hidden w-[200px] overflow-hidden  absolute top-[70px] left-[-170px] rounded-[8px]  border-[1px] border-slate-800 shadow' theme="dark" mode="vertical" selectedKeys={[active]}>
             <Menu.Item className='hover:bg-slate-700' key="1" icon={<HomeOutlined />}>
               <Link href="/" className='ml-0 pl-0'>Home</Link>
             </Menu.Item>
