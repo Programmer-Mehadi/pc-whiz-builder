@@ -4,23 +4,23 @@
     2. Open the folder in cmd
     3. Run `npm i` or `npm install`
 
-<br><h5>Front End Live Site</h5><br>
+<h5>Front End Live Site</h5><br>
 
     link: https://pcwhizbuilder.vercel.app/
 
-<br><h5>Back End Live Site</h5><br>
+<h5>Back End Live Site</h5><br>
 
     link: https://pcwhizbuilder-server.vercel.app
 
-<br><h5>Front End Code</h5><br>
+<h5>Front End Code</h5><br>
 
     link: https://github.com/Programmer-Mehadi/pc-whiz-builder
 
-<br><h5>Back End Code</h5><br>
+<h5>Back End Code</h5><br>
 
     link: https://github.com/Programmer-Mehadi/pc-whiz-builder-backend
 
-<br><h5>Details & Features</h5><br>
+<h5>Details & Features</h5><br>
 
     1. Homepage show 6 random components/products and all categories list.
     2. Categories page show all products by categories name.
