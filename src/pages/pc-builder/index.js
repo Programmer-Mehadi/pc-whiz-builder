@@ -1,12 +1,12 @@
 import RootLayout from '@/components/layout/RootLayout'
-import { removeProduct } from '@/redux/features/pcBuilder/pcBuilderSlice'
+import { removeProduct, setCategories } from '@/redux/features/pcBuilder/pcBuilderSlice'
 import Head from 'next/head'
 import Image from 'next/image'
 import Link from 'next/link'
 import { useDispatch, useSelector } from 'react-redux'
 import { toast } from 'react-toastify'
 
-const PcBuilderPage = () => {
+const PcBuilderPage = ({ categories }) => {
 
   const { itemCategories, sum, fullFill } = useSelector(state => state.pcBuilder)
   const dispatch = useDispatch();
@@ -15,6 +15,9 @@ const PcBuilderPage = () => {
       category: path
     }))
   }
+  dispatch(setCategories({
+    categories
+  }))
   return (
     <>
       <Head>
@@ -38,17 +41,19 @@ const PcBuilderPage = () => {
               </thead>
               <tbody className='overflow-auto'>
                 {
-                  itemCategories.map((item, index) => {
+                  itemCategories.length > 0 ? itemCategories.map((item, index) => {
                     return <tr key={index}>
-                      <td class="px-6 py-3 w-[15%]">
-                        {
-                          item?.productImage === "" ? <img src={item.url.slice(1)} className='w-full max-w-[50px]' alt="dfgfdgfd" /> : <img src={item?.productImage.slice(1)} className='w-full max-w-[50px]' alt="dfgfdgfd" />
-                        }
+                      <td class="px-6 py-3">
+                        <div>
+                          {
+                            item?.productImage === "" ? <img src={item.url.slice(1)} className='w-full max-w-[50px]' alt="dfgfdgfd" /> : <img src={item?.productImage.slice(1)} className='w-full max-w-[50px]' alt="dfgfdgfd" />
+                          }
+                        </div>
                         {/* {
                           item?.productImage === "" ? <Image width={50} height={50} src={item.url.slice(1)} className='w-full max-w-[50px]' alt="dfgfdgfd" /> : <Image width={50} height={50} src={item?.productImage.slice(1)} className='w-full max-w-[50px]' alt="dfgfdgfd" />
                         } */}
                       </td>
-                      <td class=" px-6 py-3 w-[53%]">
+                      <td class=" px-6 py-3">
                         <div>
                           <p className='my-1 text-sm'>{item.value} {index + 1 < 7 && <span className='text-base text-red-600'>*</span>}</p>
                           {
@@ -56,12 +61,12 @@ const PcBuilderPage = () => {
                           }
                         </div>
                       </td>
-                      <td class=" px-6 py-3 w-[15%]">
+                      <td class=" px-6 py-3">
                         {
                           item.price !== "" ? <p className='text-sm'>{item.price} &#2547;</p> : <p className='bg-gray-200 py-1'></p>
                         }
                       </td>
-                      <td class=" px-6 py-3 w-[15%]">
+                      <td class="px-6 py-3">
                         <div>
                           {
                             item?.productImage !== "" && item?.productName !== "" && item?.price !== "" ? <div onClick={() => handleRemove(item?.path)}> <button className='bg-red-900 hover:bg-red-700 hover:scale-105 transition-all text-white border-0 py-1 px-3 text-sm rounded-[4px] cursor-pointer'>X</button></div> : <Link href={`/pc-builder/${item?.path}`}>
@@ -71,7 +76,11 @@ const PcBuilderPage = () => {
                         </div>
                       </td>
                     </tr>
-                  })
+                  }) : <tr>
+                    <td colSpan={4}>
+                      <p className='text-center text-xl font-bold'>Loading...</p>
+                    </td>
+                  </tr>
                 }
               </tbody>
               <tfoot>
@@ -86,7 +95,9 @@ const PcBuilderPage = () => {
                       sum !== "" ? <p className='text-base text-center font-medium'>{sum} &#2547;</p> : <p className='bg-gray-200 py-1'></p>
                     }
                   </td>
-                  <td></td>
+                  <td>
+                    <p></p>
+                  </td>
                 </tr>
                 <tr>
                   <td colSpan={4}>
@@ -96,7 +107,6 @@ const PcBuilderPage = () => {
                       }} className='bg-green-900 hover:bg-green-700 hover:scale-105 transition-all text-white border-0 py-2 px-5 text-base rounded-[4px] cursor-pointer w-fit'>Complete Build button</button></div> :
                         <div className='py-4 px-4 flex justify-end'> <button className='bg-gray-300 hover:bg-gray-300 transition-all text-slate-500 cursor-not-allowed border-0 py-2 px-5 text-base rounded-[4px] w-fit'>Complete Build button</button></div>
                     }
-
                   </td>
                 </tr>
               </tfoot>
@@ -116,3 +126,13 @@ PcBuilderPage.getLayout = function getLayout(page) {
 }
 
 
+
+export const getServerSideProps = async () => {
+  const res = await fetch('https://pcwhizbuilder-server.vercel.app/categories')
+  const data = await res.json();
+  return {
+    props: {
+      categories: data
+    }
+  }
+}

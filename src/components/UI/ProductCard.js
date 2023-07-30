@@ -28,6 +28,7 @@ const ProductCard = (product = {}) => {
             productName,
             price,
             category,
+            productId: _id
         }))
         router.push(`/pc-builder`)
     }
