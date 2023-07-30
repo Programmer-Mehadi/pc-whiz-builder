@@ -1,9 +1,13 @@
+import Head from "next/head"
 import Image from "next/image"
 import Link from "next/link"
 
 const ErrorPage = () => {
     return (
         <>
+            <Head>
+                <title>Error Page</title>
+            </Head>
             <div className="flex flex-col items-center gap-4 min-h-[100vh]  justify-center" >
                 <img src="/A-404-Page-Best-Practices-and-Design-Inspiration.jpg" className='w-full max-w-[600px] mx-auto' alt="" />
                 {/* <Image alt="404" width={500} height={500} src="/A-404-Page-Best-Practices-and-Design-Inspiration.jpg" className='w-full max-w-[600px] mx-auto' /> */}
