@@ -103,7 +103,7 @@ const PcBuilderPage = ({ categories }) => {
                 <tr>
                   <td colSpan={4}>
                     {
-                      fullFill === 6 ? <div className='py-4 px-4 flex justify-end'> <button onClick={() => {
+                      fullFill > 5 ? <div className='py-4 px-4 flex justify-end'> <button onClick={() => {
                         dispatch(
                           resetCategories()
                         )
