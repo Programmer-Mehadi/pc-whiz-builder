@@ -1,6 +1,7 @@
 import RootLayout from '@/components/layout/RootLayout'
 import { removeProduct } from '@/redux/features/pcBuilder/pcBuilderSlice'
 import Head from 'next/head'
+import Image from 'next/image'
 import Link from 'next/link'
 import { useDispatch, useSelector } from 'react-redux'
 import { toast } from 'react-toastify'
@@ -43,10 +44,13 @@ const PcBuilderPage = () => {
                         {
                           item?.productImage === "" ? <img src={item.url.slice(1)} className='w-full max-w-[50px]' alt="dfgfdgfd" /> : <img src={item?.productImage.slice(1)} className='w-full max-w-[50px]' alt="dfgfdgfd" />
                         }
+                        {/* {
+                          item?.productImage === "" ? <Image width={50} height={50} src={item.url.slice(1)} className='w-full max-w-[50px]' alt="dfgfdgfd" /> : <Image width={50} height={50} src={item?.productImage.slice(1)} className='w-full max-w-[50px]' alt="dfgfdgfd" />
+                        } */}
                       </td>
                       <td class=" px-6 py-3 w-[53%]">
                         <div>
-                          <p className='my-1 text-sm'>{item.value} { index+1 < 7 && <span className='text-base text-red-600'>*</span>}</p>
+                          <p className='my-1 text-sm'>{item.value} {index + 1 < 7 && <span className='text-base text-red-600'>*</span>}</p>
                           {
                             item?.productName !== "" ? <p className='text-sm'>{item.productName}</p> : <p className='bg-gray-200 py-1'></p>
                           }
@@ -87,7 +91,7 @@ const PcBuilderPage = () => {
                 <tr>
                   <td colSpan={4}>
                     {
-                      fullFill === 6 ? <div className='py-4 px-4 flex justify-end'> <button onClick={()=>{
+                      fullFill === 6 ? <div className='py-4 px-4 flex justify-end'> <button onClick={() => {
                         toast.success("Congratulations! Your build has been completed successfully 🚀")
                       }} className='bg-green-900 hover:bg-green-700 hover:scale-105 transition-all text-white border-0 py-2 px-5 text-base rounded-[4px] cursor-pointer w-fit'>Complete Build button</button></div> :
                         <div className='py-4 px-4 flex justify-end'> <button className='bg-gray-300 hover:bg-gray-300 transition-all text-slate-500 cursor-not-allowed border-0 py-2 px-5 text-base rounded-[4px] w-fit'>Complete Build button</button></div>

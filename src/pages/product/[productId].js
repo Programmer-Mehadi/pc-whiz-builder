@@ -1,6 +1,7 @@
 import RootLayout from '@/components/layout/RootLayout';
 import { ShoppingCartOutlined, VideoCameraOutlined } from '@ant-design/icons';
 import { Rate } from 'antd';
+import Image from 'next/image';
 const ProductDetailsPage = ({ product = {} }) => {
   const array = product?.category.split('-');
   for (let i = 0; i < array.length; i++) {
@@ -35,6 +36,7 @@ const ProductDetailsPage = ({ product = {} }) => {
           </div>
           <div className="order-1">
             <img src={product.image.slice(1)} alt={product.productName} className="w-full h-auto rounded-lg" />
+            {/* <Image width={300} height={300} src={product.image.slice(1)} alt={product.productName} className="w-full h-auto rounded-lg" /> */}
           </div>
         </div>
         <hr className='mt-8' />
@@ -86,23 +88,23 @@ ProductDetailsPage.getLayout = function getLayout(page) {
   return <RootLayout>{page}</RootLayout>
 }
 
-// export const getStaticPaths = async () => {
-//   const res = await fetch('http://localhost:3000/api/products');
-//   const products = await res.json();
-//   return {
-//     paths: products.map((product) => ({ params: { productId: product._id } })),
-//     fallback: false
-//   }
-// }
+export const getStaticPaths = async () => {
+  const res = await fetch('https://pcwhizbuilder-server.vercel.app/products');
+  const products = await res.json();
+  return {
+    paths: products.map((product) => ({ params: { productId: product._id } })),
+    fallback: false
+  }
+}
 
 
-// export const getStaticProps = async (context) => {
-//   const res = await fetch(`http://localhost:3000/api/products/${context?.params?.productId}`);
-//   const product = await res.json();
-//   return {
-//     props: {
-//       product
-//     },
-//     revalidate: 10,
-//   }
-// }
+export const getStaticProps = async (context) => {
+  const res = await fetch(`https://pcwhizbuilder-server.vercel.app/products/${context?.params?.productId}`);
+  const product = await res.json();
+  return {
+    props: {
+      product
+    },
+    revalidate: 10,
+  }
+}

@@ -34,23 +34,23 @@ FeaturedCategoryProductPage.getLayout = function getLayout(page) {
   return <RootLayout>{page}</RootLayout>
 }
 
-// export const getStaticPaths = async () => {
-//   const res = await fetch('http://localhost:3000/api/categories');
-//   const data = await res.json();
-//   return {
-//     paths: data.map((category) => ({ params: { featuredCategory: category.path } })),
-//     fallback: false
-//   }
-// }
+export const getStaticPaths = async () => {
+  const res = await fetch('https://pcwhizbuilder-server.vercel.app/categories');
+  const data = await res.json();
+  return {
+    paths: data.map((category) => ({ params: { featuredCategory: category.path } })),
+    fallback: false
+  }
+}
 
-// export const getStaticProps = async (context) => {
-//   const { params } = context;
-//   const res = await fetch(`http://localhost:3000/api/categories/${params?.featuredCategory}`);
-//   const products = await res.json();
-//   return {
-//     props: {
-//       products
-//     },
-//      revalidate: 10,
-//   }
-// }
+export const getStaticProps = async (context) => {
+  const { params } = context;
+  const res = await fetch(`https://pcwhizbuilder-server.vercel.app/categories/${params?.featuredCategory}`);
+  const products = await res.json();
+  return {
+    props: {
+      products
+    },
+    revalidate: 10,
+  }
+}

@@ -1,11 +1,20 @@
 [
-    { "path": "cpu-processor", "value": "CPU / Processor" },
+    { "path": "cpu-processor", "value": "CPU / Processor", },
     { "path": "motherboard", "value": "Motherboard" },
     { "path": "ram", "value": "RAM" },
     { "path": "power-supply-unit", "value": "Power Supply Unit" },
     { "path": "storage-device", "value": "Storage Device" },
     { "path": "monitor", "value": "Monitor" },
     { "path": "others", "value": "Others" }
+]
+[
+    { "path": "cpu-processor", "value": "CPU / Processor", "url": "./images/featured/cpu.svg" },
+    { "path": "motherboard", "value": "Motherboard", "url": "./images/featured/motherboard.svg" },
+    { "path": "ram", "value": "RAM", "url": "./images/featured/ram.svg" },
+    { "path": "power-supply-unit", "value": "Power Supply Unit", "url": "./images/featured/power-supply-unit.svg" },
+    { "path": "storage-device", "value": "Storage Device", "url": "./images/featured/storage-device.svg" },
+    { "path": "monitor", "value": "Monitor", "url": "./images/featured/monitor.svg" },
+    { "path": "others", "value": "Others", "url": "./images/featured/others.svg" }
 ]
 [
     {

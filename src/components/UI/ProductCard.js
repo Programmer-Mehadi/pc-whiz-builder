@@ -1,5 +1,6 @@
 import { addProduct } from '@/redux/features/pcBuilder/pcBuilderSlice';
 import { Rate } from 'antd';
+import Image from 'next/image';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import { useDispatch } from 'react-redux';
@@ -38,6 +39,7 @@ const ProductCard = (product = {}) => {
         >
             <div className='w-full flex justify-center mb-8 min-h-[120px]'>
                 <img alt={productName} src={image.slice(1)} className='w-[70%] h-auto mx-auto' />
+                {/* <Image width={30} height={30} alt={productName} src={image.slice(1)} className='w-[30%] h-auto mx-auto' /> */}
             </div>
 
             <div className='w-full flex flex-col gap-2'>

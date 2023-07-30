@@ -4,7 +4,7 @@ import ProductCard from "@/components/UI/ProductCard";
 import RootLayout from "@/components/layout/RootLayout";
 import Head from "next/head";
 
-export default function Home({ products = [] }) {
+export default function Home({ products, itemCategories }) {
   return (
     <>
       <Head>
@@ -18,8 +18,8 @@ export default function Home({ products = [] }) {
       </Head>
       <main>
         <Banner></Banner>
-        <FeaturedProductSection></FeaturedProductSection>
-        <section className="px-5 py-16 pb-32">
+        <section className="px-5 py-16 pb-14">
+          <h2 className="text-center text-3xl font-bold mb-8">Featured Products</h2>
           <div className="grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-10">
             {
               products && products.map((product) => {
@@ -28,6 +28,7 @@ export default function Home({ products = [] }) {
             }
           </div>
         </section>
+        <FeaturedProductSection itemCategories={itemCategories}></FeaturedProductSection>
       </main>
     </>
   )
@@ -39,12 +40,14 @@ Home.getLayout = function getLayout(page) {
 }
 
 
-// export const getStaticProps = async () => {
-//   const res = await fetch('http://localhost:3000/api/products/random-products');
-//   const products = await res.json();
-//   return {
-//     props: {
-//       products
-//     }
-//   }
-// }
+export const getStaticProps = async () => {
+  const res = await fetch('https://pcwhizbuilder-server.vercel.app/products/random-products');
+  const products = await res.json();
+  const catRes = await fetch('https://pcwhizbuilder-server.vercel.app/categories');
+  const itemCategories = await catRes.json();
+  return {
+    props: {
+      products, itemCategories
+    }
+  }
+}
