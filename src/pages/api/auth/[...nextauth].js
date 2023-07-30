@@ -14,7 +14,7 @@ export const authOptions = {
     }),
   ],
   pages: {
-    signIn: "/login"
+    signIn: "https://pcwhizbuilder.vercel.app/login"
   }
 }
 
